@@ -26,6 +26,9 @@
       "prettier"
     ]
   },
+  "jest": {
+    "resetModules": true
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -40,6 +43,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.3.0",
+    "msw": "^0.28.2",
     "prettier": "^2.2.1"
   }
 }
