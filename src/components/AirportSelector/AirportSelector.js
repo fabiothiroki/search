@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import { getAirportsByTerm } from "../../services/AirportService/airportService";
 
 export const AirportSelector = () => {
   const [value, setValue] = useState(null);
@@ -8,17 +9,9 @@ export const AirportSelector = () => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    console.log(value, inputValue);
-    if (inputValue === "") {
-      setOptions(value ? [value] : []);
-      return undefined;
-    }
-
-    fetch(
-      `https://api.skypicker.com/locations?location_types=airport&term=${inputValue}`
-    )
-      .then((response) => response.json())
-      .then((result) => setOptions(result.locations));
+    getAirportsByTerm(inputValue).then((result) =>
+      setOptions(result.locations)
+    );
   }, [value, inputValue]);
 
   return (
@@ -34,7 +27,6 @@ export const AirportSelector = () => {
         setInputValue(newInputValue);
       }}
       onChange={(event, newValue) => {
-        setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
       }}
       value={value}
