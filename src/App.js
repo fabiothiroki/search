@@ -1,9 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { AirportSelector } from "./components/AirportSelector/AirportSelector";
 
 function App() {
   return (
     <div className="App">
+      <AirportSelector />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
