@@ -19,7 +19,7 @@ export const AirportSelector = () => {
     )
       .then((response) => response.json())
       .then((result) => setOptions(result.locations));
-  }, [value, inputValue]);
+  }, [inputValue]);
 
   return (
     <Autocomplete
