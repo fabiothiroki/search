@@ -5,9 +5,7 @@ import { getAirportsByTerm } from "../../services/AirportService/airportService"
 import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
 
-const throttled = throttle((searchTerm) => {
-  return getAirportsByTerm(searchTerm);
-}, 200);
+const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
 export const AirportSelector = ({ inputLabel, onError }) => {
   const [value, setValue] = useState(null);
