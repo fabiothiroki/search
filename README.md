@@ -13,7 +13,6 @@ A React application that allows you to search flights based on period and airpor
 - [ ] "From", and "Departure" are required fields
 - [ ] Can't select a past date
 - [ ] Return date must be after departure date
-- [ ] Handling request failing on location request
 
 ## Non-functional features:
 
