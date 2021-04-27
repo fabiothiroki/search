@@ -1,9 +1,10 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mockAirportResponse } from "../../../services/AirportService/test/mockAirportReponse";
 import { AirportSelector } from "../AirportSelector";
+import { QueryClientProvider, QueryClient } from "react-query";
 
 const server = setupServer(
   rest.get("https://api.skypicker.com/locations", (req, res, ctx) => {
@@ -11,12 +12,23 @@ const server = setupServer(
   })
 );
 
+const renderComponent = () => {
+  const queryClient = new QueryClient();
+  const wrapper = (
+    <QueryClientProvider client={queryClient}>
+      <AirportSelector inputLabel="For" />
+    </QueryClientProvider>
+  );
+
+  return wrapper;
+};
+
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("initial render", () => {
-  render(<AirportSelector inputLabel="For" />);
+  render(renderComponent());
   const input = screen.getByRole("textbox");
 
   expect(input).toBeInTheDocument();
@@ -24,7 +36,7 @@ test("initial render", () => {
 });
 
 test("search airport by term", async () => {
-  render(<AirportSelector inputLabel="For" />);
+  render(renderComponent());
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -33,7 +45,7 @@ test("search airport by term", async () => {
 });
 
 test("autocomplete suggestions", async () => {
-  render(<AirportSelector inputLabel="For" />);
+  render(renderComponent());
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -42,7 +54,7 @@ test("autocomplete suggestions", async () => {
 });
 
 test("select autocomplete suggestion", async () => {
-  render(<AirportSelector inputLabel="For" />);
+  render(renderComponent());
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -53,7 +65,7 @@ test("select autocomplete suggestion", async () => {
 });
 
 test("clear autocomplete suggestion", async () => {
-  render(<AirportSelector inputLabel="For" />);
+  render(renderComponent());
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
