@@ -34,7 +34,6 @@ export const AirportSelector = ({ inputLabel }) => {
       id="combo-box-demo"
       options={options}
       getOptionLabel={(option) => option.name}
-      style={{ width: 300 }}
       renderInput={(params) => (
         <TextField {...params} label={inputLabel} variant="outlined" />
       )}
