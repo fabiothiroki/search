@@ -26,4 +26,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - run: yarn run build --if-present
-      - run: yarn test --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+      - run: yarn test --coverage
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
