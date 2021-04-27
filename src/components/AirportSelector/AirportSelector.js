@@ -2,16 +2,21 @@ import { useState, useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import { getAirportsByTerm } from "../../services/AirportService/airportService";
+import throttle from "lodash.throttle";
 
-export const AirportSelector = ({ inputLabel }) => {
+const throttled = throttle((inputValue, setOptions) => {
+  getAirportsByTerm(inputValue).then((result) => {
+    setOptions(result.locations);
+  });
+}, 200);
+
+export const AirportSelector = () => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    getAirportsByTerm(inputValue).then((result) =>
-      setOptions(result.locations)
-    );
+    throttled(inputValue, setOptions);
   }, [value, inputValue]);
 
   return (
@@ -21,7 +26,7 @@ export const AirportSelector = ({ inputLabel }) => {
       getOptionLabel={(option) => option.name}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label={inputLabel} variant="outlined" />
+        <TextField {...params} label="Combo box" variant="outlined" />
       )}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
