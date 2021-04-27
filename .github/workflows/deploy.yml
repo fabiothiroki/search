@@ -1,10 +1,10 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Deploy Github pages
 
 on:
-  pull_request:
+  push:
     branches: [main]
 
 jobs:
@@ -23,10 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn run build --if-present
       - run: yarn test --coverage
 
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: yarn deploy
