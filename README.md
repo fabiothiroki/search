@@ -1,6 +1,7 @@
 # Search flights
 
 [![Node.js CI](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml/badge.svg)](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/fabiothiroki/search/badge.svg?branch=main)](https://coveralls.io/github/fabiothiroki/search?branch=main)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A React application that allows you to search flights based on period and airports location.
@@ -12,6 +13,7 @@ A React application that allows you to search flights based on period and airpor
 - [ ] "From", and "Departure" are required fields
 - [ ] Can't select a past date
 - [ ] Return date must be after departure date
+- [ ] Handling request failing on location request
 
 ## Non-functional features:
 
