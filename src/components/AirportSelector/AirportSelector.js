@@ -27,10 +27,10 @@ export const AirportSelector = ({ inputLabel, onError }) => {
       renderInput={(params) => (
         <TextField {...params} label={inputLabel} variant="outlined" />
       )}
-      onInputChange={(event, newInputValue) => {
+      onInputChange={(_event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      onChange={(event, newValue) => {
+      onChange={(_event, newValue) => {
         setValue(newValue);
       }}
       value={value}
