@@ -1,7 +1,6 @@
 # Search flights
 
 [![Node.js CI](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml/badge.svg)](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml)
-
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A React application that allows you to search flights based on period and airports location.
