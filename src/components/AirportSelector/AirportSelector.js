@@ -7,8 +7,7 @@ import { useQuery } from "react-query";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
-export const AirportSelector = ({ inputLabel, onError }) => {
-  const [value, setValue] = useState(null);
+export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
   const [inputValue, setInputValue] = useState("");
 
   const { error, data } = useQuery(["airportData", { inputValue }], () =>
@@ -30,10 +29,11 @@ export const AirportSelector = ({ inputLabel, onError }) => {
       onInputChange={(_event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      onChange={(_event, newValue) => {
-        setValue(newValue);
+      onChange={(e, options) => {
+        if (onChange) {
+          onChange(name, options);
+        }
       }}
-      value={value}
     />
   );
 };

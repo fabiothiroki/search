@@ -5,6 +5,7 @@ import { AirportSelector } from "../AirportSelector/AirportSelector";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { useForm, Controller } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,6 +22,13 @@ const useStyles = makeStyles((theme) => ({
 
 export const Search = () => {
   const classes = useStyles();
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
 
   return (
     <Container component="main" maxWidth="sm">
@@ -30,10 +38,27 @@ export const Search = () => {
           Search Flights
         </Typography>
 
-        <form className={classes.form} noValidate>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={classes.form}
+          noValidate
+        >
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
-              <AirportSelector inputLabel="From" />
+              <Controller
+                name="from_airport"
+                control={control}
+                defaultValue={null}
+                rules={{ required: true }}
+                render={() => (
+                  <AirportSelector
+                    name="from_airport"
+                    inputLabel="From"
+                    onChange={setValue}
+                  />
+                )}
+              />
+              {errors.from_airport && "From is required"}
             </Grid>
             <Grid item xs={12} sm={6}>
               <AirportSelector inputLabel="To" />
