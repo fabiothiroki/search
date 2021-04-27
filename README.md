@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Search flights
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Node.js CI](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml/badge.svg)](https://github.com/fabiothiroki/search/actions/workflows/node.js.yml)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+A React application that allows you to search flights based on period and airports location.
+
+## Functional features:
+
+- [x] Throttling on requests to fetch airport locations
+- [ ] "From" airport must be different than "To"
+- [ ] "From", and "Departure" are required fields
+- [ ] Can't select a past date
+- [ ] Return date must be after departure date
+
+## Non-functional features:
+
+- [x] CI using Github actions
+- [ ] CD using Github actions
+- [ ] Cypress E2E tests
 
 ## Available Scripts
 
