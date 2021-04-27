@@ -18,7 +18,9 @@ afterAll(() => server.close());
 test("initial render", () => {
   render(<AirportSelector inputLabel="For" />);
   const input = screen.getByRole("textbox");
+
   expect(input).toBeInTheDocument();
+  expect(input).toHaveValue("");
 });
 
 test("search airport by term", async () => {
@@ -28,4 +30,13 @@ test("search airport by term", async () => {
   userEvent.type(input, "prag");
 
   expect(input).toHaveValue("prag");
+});
+
+test("autocomplete suggestions", async () => {
+  render(<AirportSelector inputLabel="For" />);
+
+  const input = screen.getByRole("textbox");
+  userEvent.type(input, "prag");
+
+  expect(await screen.findByText(/prague/i)).toBeInTheDocument();
 });
