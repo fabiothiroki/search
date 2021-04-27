@@ -10,7 +10,7 @@ const throttled = throttle((inputValue, setOptions) => {
   });
 }, 200);
 
-export const AirportSelector = () => {
+export const AirportSelector = ({ inputLabel }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [options, setOptions] = useState([]);
@@ -26,7 +26,7 @@ export const AirportSelector = () => {
       getOptionLabel={(option) => option.name}
       style={{ width: 300 }}
       renderInput={(params) => (
-        <TextField {...params} label="Combo box" variant="outlined" />
+        <TextField {...params} label={inputLabel} variant="outlined" />
       )}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
