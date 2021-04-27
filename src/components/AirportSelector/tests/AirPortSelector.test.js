@@ -40,3 +40,16 @@ test("autocomplete suggestions", async () => {
 
   expect(await screen.findByText(/prague/i)).toBeInTheDocument();
 });
+
+test("select autocomplete suggestion", async () => {
+  render(<AirportSelector inputLabel="For" />);
+
+  const input = screen.getByRole("textbox");
+  userEvent.type(input, "prag");
+  const suggestion = await screen.findByText(/prague/i);
+  userEvent.clear(suggestion);
+
+  expect(input).toHaveValue("Václav Havel Airport Prague");
+});
+
+test("clear autocomplete suggestion", async () => {});
