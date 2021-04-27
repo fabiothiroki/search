@@ -1,38 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import { getAirportsByTerm } from "../../services/AirportService/airportService";
 import throttle from "lodash.throttle";
+import { useQuery } from "react-query";
 
-const throttled = throttle((inputValue, setOptions, callback) => {
-  getAirportsByTerm(inputValue).then((result) => {
-    callback(result);
-  });
+const throttled = throttle((searchTerm) => {
+  return getAirportsByTerm(searchTerm);
 }, 200);
 
-export const AirportSelector = ({ inputLabel }) => {
+export const AirportSelector = ({ inputLabel, onError }) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState([]);
 
-  useEffect(() => {
-    let isActive = true;
+  const { error, data } = useQuery(["airportData", { inputValue }], () =>
+    throttled(inputValue)
+  );
 
-    throttled(inputValue, setOptions, (result) => {
-      if (isActive) {
-        setOptions(result.locations);
-      }
-    });
-
-    return () => {
-      isActive = false;
-    };
-  }, [value, inputValue]);
+  if (error) {
+    onError(error);
+  }
 
   return (
     <Autocomplete
       id="combo-box-demo"
-      options={options}
+      options={data && data.locations ? data.locations : []}
       getOptionLabel={(option) => option.name}
       renderInput={(params) => (
         <TextField {...params} label={inputLabel} variant="outlined" />
