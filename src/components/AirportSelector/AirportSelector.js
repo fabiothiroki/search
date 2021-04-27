@@ -4,9 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import { getAirportsByTerm } from "../../services/AirportService/airportService";
 import throttle from "lodash.throttle";
 
-const throttled = throttle((inputValue, setOptions) => {
+const throttled = throttle((inputValue, setOptions, callback) => {
   getAirportsByTerm(inputValue).then((result) => {
-    setOptions(result.locations);
+    callback(result);
   });
 }, 200);
 
@@ -16,7 +16,17 @@ export const AirportSelector = ({ inputLabel }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    throttled(inputValue, setOptions);
+    let isActive = true;
+
+    throttled(inputValue, setOptions, (result) => {
+      if (isActive) {
+        setOptions(result.locations);
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
   }, [value, inputValue]);
 
   return (
