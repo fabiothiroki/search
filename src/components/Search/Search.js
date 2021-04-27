@@ -22,7 +22,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Search = () => {
   const classes = useStyles();
-  const { control, handleSubmit, setValue } = useForm();
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
   const onSubmit = (data) => console.log(data);
 
   return (
@@ -44,10 +49,16 @@ export const Search = () => {
                 name="from_airport"
                 control={control}
                 defaultValue={null}
+                rules={{ required: true }}
                 render={() => (
-                  <AirportSelector inputLabel="From" setValue={setValue} />
+                  <AirportSelector
+                    name="from_airport"
+                    inputLabel="From"
+                    onChange={setValue}
+                  />
                 )}
               />
+              {errors.from_airport && "From is required"}
             </Grid>
             <Grid item xs={12} sm={6}>
               <AirportSelector inputLabel="To" />
