@@ -47,9 +47,20 @@ test("select autocomplete suggestion", async () => {
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
   const suggestion = await screen.findByText(/prague/i);
-  userEvent.clear(suggestion);
+  userEvent.click(suggestion);
 
   expect(input).toHaveValue("Václav Havel Airport Prague");
 });
 
-test("clear autocomplete suggestion", async () => {});
+test("clear autocomplete suggestion", async () => {
+  render(<AirportSelector inputLabel="For" />);
+
+  const input = screen.getByRole("textbox");
+  userEvent.type(input, "prag");
+  const suggestion = await screen.findByText(/prague/i);
+  userEvent.click(suggestion);
+  const clear = screen.getByTitle("Clear");
+  userEvent.click(clear);
+
+  expect(input).toHaveValue("");
+});
