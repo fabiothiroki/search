@@ -5,7 +5,7 @@ import { AirportSelector } from "./components/AirportSelector/AirportSelector";
 function App() {
   return (
     <div className="App">
-      <AirportSelector />
+      <AirportSelector inputLabel="From" />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
