@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 import { getAirportsByTerm } from "../../services/AirportService/airportService";
+import throttle from "lodash.throttle";
+
+const throttled = throttle((inputValue, setOptions) => {
+  getAirportsByTerm(inputValue).then((result) => {
+    setOptions(result.locations);
+  });
+}, 200);
 
 export const AirportSelector = ({ inputLabel }) => {
   const [value, setValue] = useState(null);
@@ -9,9 +16,7 @@ export const AirportSelector = ({ inputLabel }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    getAirportsByTerm(inputValue).then((result) =>
-      setOptions(result.locations)
-    );
+    throttled(inputValue, setOptions);
   }, [value, inputValue]);
 
   return (
