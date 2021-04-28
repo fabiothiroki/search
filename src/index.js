@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import { Search } from "./components/Search/Search";
+import { App } from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClientProvider, QueryClient } from "react-query";
 
@@ -10,7 +10,7 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Search />
+      <App />
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
