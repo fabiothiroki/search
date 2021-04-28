@@ -15,13 +15,12 @@ test("Results formatter", () => {
   const result = searchResultsFormatter(parameters);
 
   expect(result).toEqual({
-    dateFrom: "2021-04-28",
-    dateTo: "2021-04-28",
+    dateFrom: "28/04/2021",
+    dateTo: "28/04/2021",
     fly_from: "BWI",
     fly_to: "TLV",
-    partner: "skypicker",
-    return_from: "2021-04-30",
-    return_to: "2021-04-30",
+    return_from: "30/04/2021",
+    return_to: "30/04/2021",
   });
 });
 
@@ -34,12 +33,11 @@ test("Validate destination and origin", () => {
   const result = searchResultsFormatter(parameters);
 
   expect(result).toEqual({
-    dateFrom: "2021-04-28",
-    dateTo: "2021-04-28",
+    dateFrom: "28/04/2021",
+    dateTo: "28/04/2021",
     fly_from: undefined,
     fly_to: undefined,
-    partner: "skypicker",
-    return_from: "2021-04-30",
-    return_to: "2021-04-30",
+    return_from: "30/04/2021",
+    return_to: "30/04/2021",
   });
 });

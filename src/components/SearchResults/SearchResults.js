@@ -1,10 +1,18 @@
 import PropTypes from "prop-types";
+import { useQuery } from "react-query";
+import getFlights from "../../services/FlightService/flightService";
 
-const SearchResults = ({ searchParameters }) => (
-  <>
-    <p>{JSON.stringify(searchParameters, null, 2)}</p>
-  </>
-);
+const SearchResults = ({ searchParameters }) => {
+  const { data } = useQuery(["flightData", { searchParameters }], () =>
+    getFlights(searchParameters)
+  );
+
+  return (
+    <>
+      <p>{JSON.stringify(data, null, 2)}</p>
+    </>
+  );
+};
 
 SearchResults.propTypes = {
   searchParameters: PropTypes.exact({
@@ -14,8 +22,11 @@ SearchResults.propTypes = {
     dateTo: PropTypes.string.isRequired,
     return_from: PropTypes.string.isRequired,
     return_to: PropTypes.string.isRequired,
-    partner: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
+};
+
+SearchResults.defaultProps = {
+  searchParameters: null,
 };
 
 export default SearchResults;
