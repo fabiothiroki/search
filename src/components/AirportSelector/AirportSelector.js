@@ -22,7 +22,7 @@ const formatAirportResults = (results, selectedAirport) => {
   return formattedData;
 };
 
-export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
+export const AirportSelector = ({ inputLabel, onError, onChange }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedAirport, setSelectedAirport] = useState(null);
 
@@ -60,5 +60,4 @@ AirportSelector.propTypes = {
   inputLabel: PropTypes.string,
   onError: PropTypes.func,
   onChange: PropTypes.func,
-  name: PropTypes.string.isRequired,
 };
