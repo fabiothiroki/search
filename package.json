@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint": "eslint --fix ."
+    "lint": "eslint ."
   },
   "jest": {
     "resetModules": true
