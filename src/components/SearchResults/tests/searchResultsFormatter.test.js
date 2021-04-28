@@ -1,4 +1,4 @@
-import { searchResultsFormatter } from "../searchResultsFormatter";
+import searchResultsFormatter from "../searchResultsFormatter";
 
 test("Results formatter", () => {
   const parameters = {

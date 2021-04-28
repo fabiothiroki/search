@@ -2,16 +2,16 @@ import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { Search } from "../Search";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { mockAirportResponse } from "../../../services/AirportService/test/mockAirportReponse";
-import { FORM_FIELDS } from "../constants";
 import userEvent from "@testing-library/user-event";
+import Search from "../Search";
+import mockAirportResponse from "../../../services/AirportService/test/mockAirportReponse";
+import FORM_FIELDS from "../constants";
 
 const server = setupServer(
-  rest.get("https://api.skypicker.com/locations", (req, res, ctx) => {
-    return res(ctx.json(mockAirportResponse));
-  })
+  rest.get("https://api.skypicker.com/locations", (req, res, ctx) =>
+    res(ctx.json(mockAirportResponse))
+  )
 );
 
 const props = {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import { getAirportsByTerm } from "../../services/AirportService/airportService";
 import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
 import PropTypes from "prop-types";
+import getAirportsByTerm from "../../services/AirportService/airportService";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
@@ -22,7 +22,7 @@ const formatAirportResults = (results, selectedAirport) => {
   return formattedData;
 };
 
-export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
+const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedAirport, setSelectedAirport] = useState(null);
 
@@ -57,8 +57,10 @@ export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
 };
 
 AirportSelector.propTypes = {
-  inputLabel: PropTypes.string,
-  onError: PropTypes.func,
-  onChange: PropTypes.func,
+  inputLabel: PropTypes.string.isRequired,
+  onError: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
+
+export default AirportSelector;

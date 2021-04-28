@@ -1,5 +1,5 @@
-import { getAirportsByTerm } from "../airportService";
-import { mockAirportResponse } from "./mockAirportReponse";
+import getAirportsByTerm from "../airportService";
+import mockAirportResponse from "./mockAirportReponse";
 
 describe("Airport service", () => {
   it("should fetch using correct url", async () => {
