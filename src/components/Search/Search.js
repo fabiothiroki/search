@@ -1,11 +1,11 @@
 import Typography from "@material-ui/core/Typography";
-import { AirportSelector } from "../AirportSelector/AirportSelector";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
+import { AirportSelector } from "../AirportSelector/AirportSelector";
 import { FORM_FIELDS } from "./constants";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +80,7 @@ export const Search = ({ onSearchSubmitted }) => {
             <Controller
               name={FORM_FIELDS.DEPARTURE_DATE}
               control={control}
-              defaultValue={""}
+              defaultValue=""
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
                 <TextField
@@ -105,7 +105,7 @@ export const Search = ({ onSearchSubmitted }) => {
             <Controller
               name={FORM_FIELDS.RETURN_DATE}
               control={control}
-              defaultValue={""}
+              defaultValue=""
               rules={{ required: true }}
               render={({ field: { onChange, value } }) => (
                 <TextField

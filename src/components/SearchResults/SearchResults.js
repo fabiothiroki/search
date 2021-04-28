@@ -1,7 +1,5 @@
-export const SearchResults = ({ searchParameters }) => {
-  return (
+export const SearchResults = ({ searchParameters }) => (
     <>
       <p>{JSON.stringify(searchParameters, null, 2)}</p>
     </>
   );
-};

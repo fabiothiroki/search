@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import { getAirportsByTerm } from "../../services/AirportService/airportService";
 import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
 import PropTypes from "prop-types";
+import { getAirportsByTerm } from "../../services/AirportService/airportService";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 

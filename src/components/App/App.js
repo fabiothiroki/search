@@ -1,8 +1,8 @@
-import { Search } from "../Search/Search";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-import { SearchResults } from "../SearchResults/SearchResults";
 import { useState } from "react";
+import { SearchResults } from "../SearchResults/SearchResults";
+import { Search } from "../Search/Search";
 import { searchResultsFormatter } from "../SearchResults/searchResultsFormatter";
 
 export const App = () => {

@@ -2,14 +2,12 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { QueryClientProvider, QueryClient } from "react-query";
 import { mockAirportResponse } from "../../../services/AirportService/test/mockAirportReponse";
 import { AirportSelector } from "../AirportSelector";
-import { QueryClientProvider, QueryClient } from "react-query";
 
 const server = setupServer(
-  rest.get("https://api.skypicker.com/locations", (req, res, ctx) => {
-    return res(ctx.json(mockAirportResponse));
-  })
+  rest.get("https://api.skypicker.com/locations", (req, res, ctx) => res(ctx.json(mockAirportResponse)))
 );
 
 const renderComponent = () => {
