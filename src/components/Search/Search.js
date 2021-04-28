@@ -6,17 +6,21 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "100%",
+    marginTop: theme.spacing(2),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  formLine: {
+    marginTop: theme.spacing(2),
   },
 }));
 
@@ -40,10 +44,10 @@ export const Search = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className={classes.form}
+          // className={classes.form}
           noValidate
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={2} className={classes.formLine}>
             <Grid item xs={12} sm={6}>
               <Controller
                 name="from_airport"
@@ -62,6 +66,33 @@ export const Search = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <AirportSelector inputLabel="To" />
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={2} className={classes.formLine}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="date"
+                label="Departure"
+                type="date"
+                defaultValue="2017-05-24"
+                style={{ width: "100%" }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="date"
+                label="Return"
+                type="date"
+                defaultValue="2017-05-24"
+                style={{ width: "100%" }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </Grid>
           </Grid>
 
