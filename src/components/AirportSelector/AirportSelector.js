@@ -4,14 +4,31 @@ import TextField from "@material-ui/core/TextField";
 import { getAirportsByTerm } from "../../services/AirportService/airportService";
 import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
+import PropTypes from "prop-types";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
+const formatAirportResults = (results, selectedAirport) => {
+  const formattedData = [];
+
+  if (selectedAirport) {
+    formattedData.push(selectedAirport);
+  }
+
+  if (results && results.locations) {
+    return formattedData.concat(results.locations);
+  }
+
+  return formattedData;
+};
+
 export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
   const [inputValue, setInputValue] = useState("");
+  const [selectedAirport, setSelectedAirport] = useState(null);
 
-  const { error, data } = useQuery(["airportData", { inputValue }], () =>
-    throttled(inputValue)
+  const { error, data } = useQuery(
+    ["airportData", { inputValue, selectedAirport }],
+    () => throttled(inputValue)
   );
 
   if (error) {
@@ -20,8 +37,7 @@ export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
 
   return (
     <Autocomplete
-      id="combo-box-demo"
-      options={data && data.locations ? data.locations : []}
+      options={formatAirportResults(data, selectedAirport)}
       getOptionLabel={(option) => option.name}
       renderInput={(params) => (
         <TextField {...params} label={inputLabel} variant="outlined" />
@@ -29,11 +45,20 @@ export const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
       onInputChange={(_event, newInputValue) => {
         setInputValue(newInputValue);
       }}
-      onChange={(e, options) => {
+      onChange={(_e, airport) => {
+        setSelectedAirport(airport);
         if (onChange) {
-          onChange(name, options);
+          onChange(name, airport);
         }
       }}
+      value={selectedAirport}
     />
   );
+};
+
+AirportSelector.propTypes = {
+  inputLabel: PropTypes.string,
+  onError: PropTypes.func,
+  onChange: PropTypes.func,
+  name: PropTypes.string.isRequired,
 };
