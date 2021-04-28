@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 export const App = () => {
   return (
     <Container component="main" maxWidth="sm">
-      <CssBaseline />{" "}
+      <CssBaseline />
       <Search onSearchSubmitted={(search) => console.log(search)} />
     </Container>
   );
