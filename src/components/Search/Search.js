@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
 import PropTypes from "prop-types";
-import { AirportSelector } from "../AirportSelector/AirportSelector";
-import { FORM_FIELDS } from "./constants";
+import AirportSelector from "../AirportSelector/AirportSelector";
+import FORM_FIELDS from "./constants";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Search = ({ onSearchSubmitted }) => {
+const Search = ({ onSearchSubmitted }) => {
   const classes = useStyles();
   const {
     control,
@@ -146,3 +146,5 @@ export const Search = ({ onSearchSubmitted }) => {
 Search.propTypes = {
   onSearchSubmitted: PropTypes.func.isRequired,
 };
+
+export default Search;

@@ -1,4 +1,4 @@
-export const mockAirportResponse = {
+const mockAirportResponse = {
   locations: [
     {
       id: "PRG",
@@ -24,3 +24,5 @@ export const mockAirportResponse = {
     },
   ],
 };
+
+export default mockAirportResponse;
