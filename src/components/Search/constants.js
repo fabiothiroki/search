@@ -2,5 +2,5 @@ export const FORM_FIELDS = {
   ORIGIN: "origin",
   DESTINATION: "destination",
   DEPARTURE_DATE: "departureDate",
-  RETURN_DATE: "returnDate,",
+  RETURN_DATE: "returnDate",
 };

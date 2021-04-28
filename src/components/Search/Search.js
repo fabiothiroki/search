@@ -31,7 +31,7 @@ export const Search = ({ onSearchSubmitted }) => {
     setValue,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => onSearchSubmitted(data);
 
   return (
     <div className={classes.paper}>
@@ -55,7 +55,7 @@ export const Search = ({ onSearchSubmitted }) => {
                 />
               )}
             />
-            {errors.from_airport && "From is required"}
+            {errors[FORM_FIELDS.DESTINATION] && "From is required"}
           </Grid>
           <Grid item xs={12} sm={6}>
             <Controller
@@ -71,6 +71,7 @@ export const Search = ({ onSearchSubmitted }) => {
                 />
               )}
             />
+            {errors[FORM_FIELDS.DESTINATION] && "To is required"}
           </Grid>
         </Grid>
 
@@ -79,33 +80,45 @@ export const Search = ({ onSearchSubmitted }) => {
             <Controller
               name={FORM_FIELDS.DEPARTURE_DATE}
               control={control}
-              defaultValue={null}
+              defaultValue={""}
               rules={{ required: true }}
-              render={(field) => (
+              render={({ field: { onChange, value } }) => (
                 <TextField
                   name={FORM_FIELDS.DEPARTURE_DATE}
                   label="Departure"
                   type="date"
-                  defaultValue="2017-05-24"
                   style={{ width: "100%" }}
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  onChange={onChange}
+                  value={value}
                 />
               )}
             />
+            {errors[FORM_FIELDS.DEPARTURE_DATE] && "Departure date is required"}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              id="date"
-              label="Return"
-              type="date"
-              defaultValue="2017-05-24"
-              style={{ width: "100%" }}
-              InputLabelProps={{
-                shrink: true,
-              }}
+            <Controller
+              name={FORM_FIELDS.RETURN_DATE}
+              control={control}
+              defaultValue={""}
+              rules={{ required: true }}
+              render={({ field: { onChange, value } }) => (
+                <TextField
+                  name={FORM_FIELDS.RETURN_DATE}
+                  label="Return"
+                  type="date"
+                  style={{ width: "100%" }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  onChange={onChange}
+                  value={value}
+                />
+              )}
             />
+            {errors[FORM_FIELDS.RETURN_DATE] && "Return date is required"}
           </Grid>
         </Grid>
 

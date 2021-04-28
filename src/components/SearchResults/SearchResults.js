@@ -1,15 +1,7 @@
-export const SearchResults = ({
-  departureDate,
-  returnDate,
-  origin,
-  destination,
-}) => {
+export const SearchResults = ({ searchParameters }) => {
   return (
     <>
-      <p>{departureDate}</p>
-      <p>{returnDate}</p>
-      <p>{origin}</p>
-      <p>{destination}</p>
+      <p>{JSON.stringify(searchParameters, null, 2)}</p>
     </>
   );
 };

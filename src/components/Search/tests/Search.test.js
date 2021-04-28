@@ -3,6 +3,7 @@ import { setupServer } from "msw/node";
 import { render, screen } from "@testing-library/react";
 import { Search } from "../Search";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { mockAirportResponse } from "../../../services/AirportService/test/mockAirportReponse";
 
 const server = setupServer(
   rest.get("https://api.skypicker.com/locations", (req, res, ctx) => {
@@ -14,7 +15,7 @@ const renderComponent = () => {
   const queryClient = new QueryClient();
   const wrapper = (
     <QueryClientProvider client={queryClient}>
-      <Search />
+      <Search onSearchSubmitted={jest.fn()} />
     </QueryClientProvider>
   );
 
