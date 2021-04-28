@@ -16,7 +16,7 @@ const renderComponent = () => {
   const queryClient = new QueryClient();
   const wrapper = (
     <QueryClientProvider client={queryClient}>
-      <AirportSelector inputLabel="For" />
+      <AirportSelector inputLabel="For" name="airport" />
     </QueryClientProvider>
   );
 
