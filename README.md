@@ -9,15 +9,13 @@ A React application that allows you to search flights based on period and airpor
 ## Functional features:
 
 - [x] Throttling on requests to fetch airport locations
-- [ ] "From" airport must be different than "To"
-- [ ] "From", and "Departure" are required fields
-- [ ] Can't select a past date
-- [ ] Return date must be after departure date
+- [x] "Origin", "Destination", and dates are required fields
 
 ## Non-functional features:
 
 - [x] CI using Github actions
-- [ ] CD using Github actions
+- [x] CD using Github actions
+- [x] Unit tests using testing library
 - [ ] Cypress E2E tests
 
 ## Available Scripts
