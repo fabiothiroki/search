@@ -42,11 +42,7 @@ export const Search = () => {
           Search Flights
         </Typography>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          // className={classes.form}
-          noValidate
-        >
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Grid container spacing={2} className={classes.formLine}>
             <Grid item xs={12} sm={6}>
               <Controller
