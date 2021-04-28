@@ -91,6 +91,9 @@ export const Search = ({ onSearchSubmitted }) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  inputProps={{
+                    "data-testid": FORM_FIELDS.DEPARTURE_DATE,
+                  }}
                   onChange={onChange}
                   value={value}
                 />
@@ -113,6 +116,9 @@ export const Search = ({ onSearchSubmitted }) => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  inputProps={{
+                    "data-testid": FORM_FIELDS.RETURN_DATE,
+                  }}
                   onChange={onChange}
                   value={value}
                 />
@@ -123,6 +129,7 @@ export const Search = ({ onSearchSubmitted }) => {
         </Grid>
 
         <Button
+          data-testid="submitButton"
           className={classes.submit}
           type="submit"
           fullWidth
