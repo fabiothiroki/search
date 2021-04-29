@@ -1,10 +1,10 @@
-import { memo , useState } from "react";
+import { memo, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 
 import SearchResults from "../SearchResults/SearchResults";
 import Search from "../Search/Search";
-import searchResultsFormatter from "../SearchResults/searchResultsFormatter";
+import searchResultsFormatter from "../../services/Airport/searchResultsFormatter";
 
 const App = () => {
   const [searchParameters, setSearchParameters] = useState(null);
