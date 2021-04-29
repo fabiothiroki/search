@@ -6,6 +6,13 @@
 
 A React application that allows you to search flights based on period and airports location.
 
+## Focus of this repository
+- Isolation of components so they can be quickly testable using jest with testing-library
+- Automation of coding formatting and quality using `eslint` and `prettier`
+- Learning new libraries:
+  - [React query](https://react-query.tanstack.com/): to simplify the state management of performing async requests
+  - [React hook form](https://react-hook-form.com/) to make it easy to validate and manage the form state
+
 ## Functional features:
 
 - [x] Throttling on requests to fetch airport locations
