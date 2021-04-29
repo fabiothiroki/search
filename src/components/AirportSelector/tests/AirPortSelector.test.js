@@ -3,7 +3,7 @@ import { setupServer } from "msw/node";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { QueryClientProvider, QueryClient } from "react-query";
-import mockAirportResponse from "../../../services/AirportService/test/mockAirportReponse";
+import mockAirportResponse from "../../../services/Airport/test/mockAirportReponse";
 import AirportSelector from "../AirportSelector";
 
 const server = setupServer(

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useQuery } from "react-query";
-import getFlights from "../../services/FlightService/flightService";
+import getFlights from "../../services/Flight/flightService";
 
 const SearchResults = ({ searchParameters }) => {
   const { data } = useQuery(["flightData", { searchParameters }], () =>

@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
 import PropTypes from "prop-types";
-import getAirportsByTerm from "../../services/AirportService/airportService";
+import getAirportsByTerm from "../../services/Airport/airportService";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
