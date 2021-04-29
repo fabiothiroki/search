@@ -10,8 +10,8 @@ const flightResponseFormatter = (flights) => {
     flyTo: flight.flyTo,
     cityTo: flight.cityTo,
     price: `${flight.price} ${flights.currency}`,
-    dTimeUTC: flight.dTimeUTC,
-    aTimeUTC: flight.aTimeUTC,
+    departureDate: new Date(flight.dTimeUTC * 1000).toLocaleString(),
+    arrivalDate: new Date(flight.aTimeUTC * 1000).toLocaleString(),
   }));
 };
 

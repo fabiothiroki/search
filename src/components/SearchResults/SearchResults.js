@@ -1,20 +1,33 @@
 import PropTypes from "prop-types";
 import { useQuery } from "react-query";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import getFlights from "../../services/Flight/flightService";
 import flightResponseFormatter from "../../services/Flight/flightResponseFormatter";
 import FlightCard from "../FlightCard/FlightCard";
 
 const SearchResults = ({ searchParameters }) => {
-  const { data } = useQuery(["flightData", { searchParameters }], () =>
-    getFlights(searchParameters).then(flightResponseFormatter)
+  const { data, isLoading } = useQuery(
+    ["flightData", { searchParameters }],
+    () => getFlights(searchParameters).then(flightResponseFormatter)
   );
+
+  if (isLoading) {
+    return <LinearProgress />;
+  }
 
   if (!data) {
     return null;
   }
 
   return data.map((flight) => (
-    <FlightCard cityFrom={flight.cityFrom} cityTo={flight.cityTo} />
+    <FlightCard
+      key={flight.id}
+      cityFrom={flight.cityFrom}
+      cityTo={flight.cityTo}
+      departureDate={flight.departureDate}
+      arrivalDate={flight.arrivalDate}
+      price={flight.price}
+    />
   ));
 };
 
