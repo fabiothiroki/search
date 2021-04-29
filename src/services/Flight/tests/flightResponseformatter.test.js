@@ -6,20 +6,28 @@ test("should format expected data", () => {
 
   expect(result).toEqual([
     {
-      aTimeUTC: 1607950020,
+      arrivalDate: new Date(
+        mockFlightResponse.data[0].aTimeUTC * 1000
+      ).toLocaleString(),
       cityFrom: "San Francisco",
       cityTo: "San Diego",
-      dTimeUTC: 1607922060,
+      departureDate: new Date(
+        mockFlightResponse.data[0].dTimeUTC * 1000
+      ).toLocaleString(),
       flyFrom: "SFO",
       flyTo: "SAN",
       id: "20a108d748b20000d8b4b5f0_0|08d720a148b900007840d555_0",
       price: "88 EUR",
     },
     {
-      aTimeUTC: 1607950020,
+      arrivalDate: new Date(
+        mockFlightResponse.data[1].aTimeUTC * 1000
+      ).toLocaleString(),
       cityFrom: "San Francisco",
       cityTo: "San Diego",
-      dTimeUTC: 1607922060,
+      departureDate: new Date(
+        mockFlightResponse.data[1].dTimeUTC * 1000
+      ).toLocaleString(),
       flyFrom: "SFO",
       flyTo: "SAN",
       id: "20a108d748b40000cea23c4e_0|08d720a148b6000046c7988b_0",
