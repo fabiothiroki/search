@@ -36,9 +36,7 @@ afterAll(() => server.close());
 test("Page title", () => {
   render(renderComponent());
 
-  const title = screen.getByText("Search Flights");
-
-  expect(title).toBeInTheDocument();
+  expect(screen.getByText("Search Flights")).toBeInTheDocument();
 });
 
 test("Form submission", async () => {
@@ -88,4 +86,18 @@ test("Form submission", async () => {
       returnDate: "2020-05-15",
     })
   );
+});
+
+test("Validate required fields", async () => {
+  render(renderComponent());
+
+  fireEvent.submit(screen.getByTestId("submitButton"));
+
+  await waitFor(() => {
+    expect(screen.getByText("From is required")).toBeInTheDocument();
+    expect(screen.getByText("To is required")).toBeInTheDocument();
+    expect(screen.getByText("Departure date is required")).toBeInTheDocument();
+    expect(screen.getByText("Return date is required")).toBeInTheDocument();
+    expect(props.onSearchSubmitted).not.toBeCalled();
+  });
 });
