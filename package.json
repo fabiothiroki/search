@@ -29,7 +29,10 @@
     "lint": "eslint ."
   },
   "jest": {
-    "resetModules": true
+    "resetModules": true,
+    "collectCoverageFrom": [
+      "!src/index.js"
+    ]
   },
   "browserslist": {
     "production": [
