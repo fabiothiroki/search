@@ -7,12 +7,12 @@ test("should format expected data", () => {
   expect(result).toEqual([
     {
       arrivalDate: new Date(
-        mockFlightResponse.aTimeUTC * 1000
+        mockFlightResponse.data[0].aTimeUTC * 1000
       ).toLocaleString(),
       cityFrom: "San Francisco",
       cityTo: "San Diego",
       departureDate: new Date(
-        mockFlightResponse.dTimeUTC * 1000
+        mockFlightResponse.data[0].dTimeUTC * 1000
       ).toLocaleString(),
       flyFrom: "SFO",
       flyTo: "SAN",
@@ -21,12 +21,12 @@ test("should format expected data", () => {
     },
     {
       arrivalDate: new Date(
-        mockFlightResponse.aTimeUTC * 1000
+        mockFlightResponse.data[1].aTimeUTC * 1000
       ).toLocaleString(),
       cityFrom: "San Francisco",
       cityTo: "San Diego",
       departureDate: new Date(
-        mockFlightResponse.dTimeUTC * 1000
+        mockFlightResponse.data[1].dTimeUTC * 1000
       ).toLocaleString(),
       flyFrom: "SFO",
       flyTo: "SAN",
