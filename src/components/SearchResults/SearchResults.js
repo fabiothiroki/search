@@ -2,17 +2,20 @@ import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import getFlights from "../../services/Flight/flightService";
 import flightResponseFormatter from "../../services/Flight/flightResponseFormatter";
+import FlightCard from "../FlightCard/FlightCard";
 
 const SearchResults = ({ searchParameters }) => {
   const { data } = useQuery(["flightData", { searchParameters }], () =>
     getFlights(searchParameters).then(flightResponseFormatter)
   );
 
-  return (
-    <>
-      <p>{JSON.stringify(data, null, 2)}</p>
-    </>
-  );
+  if (!data) {
+    return null;
+  }
+
+  return data.map((flight) => (
+    <FlightCard cityFrom={flight.cityFrom} cityTo={flight.cityTo} />
+  ));
 };
 
 SearchResults.propTypes = {
