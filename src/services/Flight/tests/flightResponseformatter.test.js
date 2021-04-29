@@ -27,3 +27,9 @@ test("should format expected data", () => {
     },
   ]);
 });
+
+test("should handle null data", () => {
+  const result = flightResponseFormatter(null);
+
+  expect(result).toBeNull();
+});
