@@ -2,7 +2,7 @@ const defaultPartner = "skypicker";
 
 const getFlights = (parameters) => {
   if (!parameters) {
-    return {};
+    return null;
   }
 
   const params = new URLSearchParams({
