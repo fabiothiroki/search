@@ -22,19 +22,14 @@ const formatAirportResults = (results, selectedAirport) => {
   return formattedData;
 };
 
-const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
+const AirportSelector = ({ inputLabel, onChange, name }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedAirport, setSelectedAirport] = useState(null);
 
-  const { error, data } = useQuery(
+  const { data } = useQuery(
     ["airportData", { inputValue, selectedAirport }],
     () => throttled(inputValue)
   );
-
-  if (error) {
-    onError(error);
-  }
-
   return (
     <Autocomplete
       options={formatAirportResults(data, selectedAirport)}
@@ -58,7 +53,6 @@ const AirportSelector = ({ inputLabel, onError, onChange, name }) => {
 
 AirportSelector.propTypes = {
   inputLabel: PropTypes.string.isRequired,
-  onError: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };

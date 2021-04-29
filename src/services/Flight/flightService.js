@@ -2,12 +2,13 @@ const defaultPartner = "skypicker";
 
 const getFlights = (parameters) => {
   if (!parameters) {
-    return null;
+    return Promise.resolve(null);
   }
 
   const params = new URLSearchParams({
     ...parameters,
     partner: defaultPartner,
+    limit: 10,
   });
 
   return fetch(
