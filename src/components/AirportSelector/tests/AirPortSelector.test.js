@@ -7,7 +7,7 @@ import mockAirportResponse from "../../../services/Airport/test/mockAirportRepon
 import AirportSelector from "../AirportSelector";
 
 const server = setupServer(
-  rest.get("https://api.skypicker.com/locations", (req, res, ctx) =>
+  rest.get("https://api.skypicker.com/locations", (_req, res, ctx) =>
     res(ctx.json(mockAirportResponse))
   )
 );
@@ -20,13 +20,11 @@ const props = {
 
 const renderComponent = () => {
   const queryClient = new QueryClient();
-  const wrapper = (
+  return render(
     <QueryClientProvider client={queryClient}>
       <AirportSelector {...props} />
     </QueryClientProvider>
   );
-
-  return wrapper;
 };
 
 beforeAll(() => server.listen());
@@ -34,7 +32,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("initial render", () => {
-  render(renderComponent());
+  renderComponent();
   const input = screen.getByRole("textbox");
 
   expect(input).toBeInTheDocument();
@@ -42,7 +40,7 @@ test("initial render", () => {
 });
 
 test("search airport by term", async () => {
-  render(renderComponent());
+  renderComponent();
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -51,7 +49,7 @@ test("search airport by term", async () => {
 });
 
 test("autocomplete suggestions", async () => {
-  render(renderComponent());
+  renderComponent();
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -60,7 +58,7 @@ test("autocomplete suggestions", async () => {
 });
 
 test("select autocomplete suggestion", async () => {
-  render(renderComponent());
+  renderComponent();
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");
@@ -76,7 +74,7 @@ test("select autocomplete suggestion", async () => {
 });
 
 test("clear autocomplete suggestion", async () => {
-  render(renderComponent());
+  renderComponent();
 
   const input = screen.getByRole("textbox");
   userEvent.type(input, "prag");

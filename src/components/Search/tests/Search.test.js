@@ -26,7 +26,7 @@ const renderComponent = () => {
     </QueryClientProvider>
   );
 
-  return wrapper;
+  return render(wrapper);
 };
 
 beforeAll(() => server.listen());
@@ -34,13 +34,13 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Page title", () => {
-  render(renderComponent());
+  renderComponent();
 
   expect(screen.getByText("Search Flights")).toBeInTheDocument();
 });
 
 test("Form submission", async () => {
-  render(renderComponent());
+  renderComponent();
 
   userEvent.type(screen.getByRole("textbox", { name: "From" }), "prag");
   userEvent.click(await screen.findByText(/prague/i));
@@ -77,7 +77,7 @@ test("Form submission", async () => {
 });
 
 test("Validate required fields", async () => {
-  render(renderComponent());
+  renderComponent();
 
   fireEvent.submit(screen.getByTestId("submitButton"));
 
