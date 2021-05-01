@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import Typography from "@material-ui/core/Typography";
 import getFlights from "../../services/Flight/flightService";
 import flightResponseFormatter from "../../services/Flight/flightResponseFormatter";
 import FlightCard from "../FlightCard/FlightCard";
@@ -16,7 +17,11 @@ const SearchResults = ({ searchParameters }) => {
   }
 
   if (!data) {
-    return null;
+    return (
+      <Typography variant="body1" component="p">
+        Find cheap flights
+      </Typography>
+    );
   }
 
   return data.map((flight) => (
