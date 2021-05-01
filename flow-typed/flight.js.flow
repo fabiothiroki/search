@@ -1,0 +1,12 @@
+// @flow
+
+declare type Flight = {
+  id: string,
+  flyFrom: string,
+  cityFrom: string,
+  cityTo: string,
+  flyTo: string,
+  price: string,
+  departureDate: string,
+  arrivalDate: string,
+};

@@ -9,7 +9,7 @@ import formatAirportResults from "../../services/Airport/airportResponseFormatte
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
 
-const AirportSelector = ({ inputLabel, onChange, name }) => {
+const AirportSelector = ({ inputLabel, onChange, nameIdentifier }) => {
   const [inputValue, setInputValue] = useState("");
   const [selectedAirport, setSelectedAirport] = useState(null);
 
@@ -29,9 +29,7 @@ const AirportSelector = ({ inputLabel, onChange, name }) => {
       }}
       onChange={(_e, airport) => {
         setSelectedAirport(airport);
-        if (onChange) {
-          onChange(name, airport);
-        }
+        onChange(nameIdentifier, airport);
       }}
       value={selectedAirport}
     />
@@ -41,7 +39,7 @@ const AirportSelector = ({ inputLabel, onChange, name }) => {
 AirportSelector.propTypes = {
   inputLabel: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
+  nameIdentifier: PropTypes.string.isRequired,
 };
 
 export default AirportSelector;

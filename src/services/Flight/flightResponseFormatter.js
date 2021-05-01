@@ -12,16 +12,7 @@ const flightResponseFormatter = (flights: {
     dTimeUTC: number,
     aTimeUTC: number,
   }>,
-}): ?Array<{
-  id: string,
-  flyFrom: string,
-  cityFrom: string,
-  cityTo: string,
-  flyTo: string,
-  price: string,
-  departureDate: string,
-  arrivalDate: string,
-}> => {
+}): ?Array<Flight> => {
   if (!flights) {
     return null;
   }
