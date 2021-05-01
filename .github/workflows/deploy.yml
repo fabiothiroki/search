@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
+      - run: yarn flow check
       - run: yarn test --coverage
 
       - name: Coveralls
