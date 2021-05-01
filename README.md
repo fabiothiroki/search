@@ -23,6 +23,7 @@ A React application that allows you to search flights based on period and airpor
 - [x] CI using Github actions
 - [x] CD using Github actions
 - [x] Unit tests using testing library
+- [x] Type definitions using Flow
 - [ ] Cypress E2E tests
 
 ## Available Scripts
