@@ -5,22 +5,9 @@ import throttle from "lodash.throttle";
 import { useQuery } from "react-query";
 import PropTypes from "prop-types";
 import getAirportsByTerm from "../../services/Airport/airportService";
+import formatAirportResults from "../../services/Airport/airportResponseFormatter";
 
 const throttled = throttle((searchTerm) => getAirportsByTerm(searchTerm), 200);
-
-const formatAirportResults = (results, selectedAirport) => {
-  const formattedData = [];
-
-  if (selectedAirport) {
-    formattedData.push(selectedAirport);
-  }
-
-  if (results && results.locations) {
-    return formattedData.concat(results.locations);
-  }
-
-  return formattedData;
-};
 
 const AirportSelector = ({ inputLabel, onChange, name }) => {
   const [inputValue, setInputValue] = useState("");

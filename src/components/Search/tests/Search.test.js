@@ -62,26 +62,14 @@ test("Form submission", async () => {
     expect(props.onSearchSubmitted).toHaveBeenCalledWith({
       departureDate: "2020-05-13",
       destination: {
-        active: true,
-        airport_int_id: 5212,
         code: "PRG",
-        icao: "LKPR",
         id: "PRG",
-        int_id: 5212,
         name: "Václav Havel Airport Prague",
-        slug: "vaclav-havel-airport-prague-prague-czechia",
-        slug_en: "vaclav-havel-airport-prague-prague-czechia",
       },
       origin: {
-        active: true,
-        airport_int_id: 5212,
         code: "PRG",
-        icao: "LKPR",
         id: "PRG",
-        int_id: 5212,
         name: "Václav Havel Airport Prague",
-        slug: "vaclav-havel-airport-prague-prague-czechia",
-        slug_en: "vaclav-havel-airport-prague-prague-czechia",
       },
       returnDate: "2020-05-15",
     })
