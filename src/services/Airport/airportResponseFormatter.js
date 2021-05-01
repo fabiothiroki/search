@@ -1,7 +1,7 @@
 // @flow
 
 const formatAirportResults = (
-  results: { locations: Array<Airport> },
+  results?: { locations?: Array<Airport> },
   selectedAirport: Airport
 ): Airport[] => {
   const formattedData = [];
