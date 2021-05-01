@@ -13,13 +13,11 @@ const server = setupServer(
 
 const renderComponent = (props) => {
   const queryClient = new QueryClient();
-  const wrapper = (
+  return render(
     <QueryClientProvider client={queryClient}>
       <SearchResults {...props} />
     </QueryClientProvider>
   );
-
-  return wrapper;
 };
 
 beforeAll(() => server.listen());
@@ -27,7 +25,7 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 test("Render component initial state", () => {
-  render(renderComponent());
+  renderComponent();
 
   expect(screen.getByRole("progressbar")).toBeInTheDocument();
 });
@@ -37,7 +35,7 @@ test("Render component without results", async () => {
     rest.get("https://api.skypicker.com/flights", (_req, res) => res(null))
   );
 
-  render(renderComponent());
+  renderComponent();
 
   await waitFor(() => {
     expect(screen.getByText(/Find cheap flights/i)).toBeInTheDocument();
@@ -45,18 +43,16 @@ test("Render component without results", async () => {
 });
 
 test("Render component with results", async () => {
-  render(
-    renderComponent({
-      searchParameters: {
-        dateFrom: "28/04/2021",
-        dateTo: "28/04/2021",
-        fly_from: "BWI",
-        fly_to: "TLV",
-        return_from: "30/04/2021",
-        return_to: "30/04/2021",
-      },
-    })
-  );
+  renderComponent({
+    searchParameters: {
+      dateFrom: "28/04/2021",
+      dateTo: "28/04/2021",
+      fly_from: "BWI",
+      fly_to: "TLV",
+      return_from: "30/04/2021",
+      return_to: "30/04/2021",
+    },
+  });
   await waitFor(() => {
     expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
     expect(screen.queryByText(/Find cheap flights/i)).not.toBeInTheDocument();
