@@ -1,4 +1,27 @@
-const flightResponseFormatter = (flights) => {
+// @flow
+
+const flightResponseFormatter = (flights: {
+  currency: string,
+  data: Array<{
+    id: string,
+    flyFrom: string,
+    cityFrom: string,
+    cityTo: string,
+    flyTo: string,
+    price: string,
+    dTimeUTC: number,
+    aTimeUTC: number,
+  }>,
+}): ?Array<{
+  id: string,
+  flyFrom: string,
+  cityFrom: string,
+  cityTo: string,
+  flyTo: string,
+  price: string,
+  departureDate: string,
+  arrivalDate: string,
+}> => {
   if (!flights) {
     return null;
   }
