@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { useForm, Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
-import PropTypes from "prop-types";
 import AirportSelector from "../AirportSelector/AirportSelector";
 import FORM_FIELDS from "./constants";
 
@@ -23,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Search = ({ onSearchSubmitted }) => {
+type Props = {
+  onSearchSubmitted: (searchParameters: SearchParameters) => void,
+};
+
+const Search = ({ onSearchSubmitted }: Props) => {
   const classes = useStyles();
   const {
     control,
@@ -141,10 +144,6 @@ const Search = ({ onSearchSubmitted }) => {
       </form>
     </div>
   );
-};
-
-Search.propTypes = {
-  onSearchSubmitted: PropTypes.func.isRequired,
 };
 
 export default Search;

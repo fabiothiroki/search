@@ -12,6 +12,7 @@
     "gh-pages": "^3.1.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2",
+    "prop-types-extra": "^1.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.3.4",
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-react-flow-props-to-prop-types": "^0.15.0",
     "coveralls": "^3.1.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",

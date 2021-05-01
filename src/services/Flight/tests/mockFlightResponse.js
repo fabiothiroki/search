@@ -1,4 +1,6 @@
-const mockFlightResponse = {
+// @flow
+
+const mockFlightResponse: FlightSearchResponse = {
   currency: "EUR",
   data: [
     {
