@@ -10,3 +10,19 @@ declare type Flight = {
   departureDate: string,
   arrivalDate: string,
 };
+
+declare type FlightSearchResponse = {
+  currency: string,
+  data: Array<FlightResponse>,
+};
+
+declare type FlightResponse = {
+  id: string,
+  flyFrom: string,
+  cityFrom: string,
+  flyTo: string,
+  cityTo: string,
+  price: number,
+  dTimeUTC: number,
+  aTimeUTC: number,
+};

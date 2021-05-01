@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useQuery } from "react-query";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
@@ -6,7 +5,11 @@ import getFlights from "../../services/Flight/flightService";
 import flightResponseFormatter from "../../services/Flight/flightResponseFormatter";
 import FlightCard from "../FlightCard/FlightCard";
 
-const SearchResults = ({ searchParameters }) => {
+type Props = {
+  searchParameters?: SearchParametersFormatted,
+};
+
+const SearchResults = ({ searchParameters }: Props) => {
   const { data, isLoading } = useQuery(
     ["flightData", { searchParameters }],
     () => getFlights(searchParameters).then(flightResponseFormatter)
@@ -34,17 +37,6 @@ const SearchResults = ({ searchParameters }) => {
       price={flight.price}
     />
   ));
-};
-
-SearchResults.propTypes = {
-  searchParameters: PropTypes.exact({
-    fly_from: PropTypes.string.isRequired,
-    fly_to: PropTypes.string.isRequired,
-    dateFrom: PropTypes.string.isRequired,
-    dateTo: PropTypes.string.isRequired,
-    return_from: PropTypes.string.isRequired,
-    return_to: PropTypes.string.isRequired,
-  }),
 };
 
 SearchResults.defaultProps = {

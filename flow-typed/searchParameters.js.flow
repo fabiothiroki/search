@@ -1,0 +1,21 @@
+// @flow
+
+declare type SearchParameters = {
+  origin: {
+    code: string,
+  },
+  destination: {
+    code: string,
+  },
+  departureDate: string,
+  returnDate: string,
+};
+
+declare type SearchParametersFormatted = {
+  fly_from: string,
+  fly_to: string,
+  dateFrom: string,
+  dateTo: string,
+  return_from: string,
+  return_to: string,
+};
