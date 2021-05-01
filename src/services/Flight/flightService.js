@@ -1,3 +1,5 @@
+import API_BASE_URL from "../constants";
+
 const defaultPartner = "skypicker";
 
 const getFlights = (parameters) => {
@@ -12,7 +14,7 @@ const getFlights = (parameters) => {
   });
 
   return fetch(
-    `https://api.skypicker.com/flights?${params.toString()}`
+    `${API_BASE_URL}/flights?${params.toString()}`
   ).then((response) => response.json());
 };
 
