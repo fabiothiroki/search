@@ -49,7 +49,7 @@ const Search = ({ onSearchSubmitted }) => {
               rules={{ required: true }}
               render={() => (
                 <AirportSelector
-                  name={FORM_FIELDS.ORIGIN}
+                  nameIdentifier={FORM_FIELDS.ORIGIN}
                   inputLabel="From"
                   onChange={setValue}
                 />
@@ -65,7 +65,7 @@ const Search = ({ onSearchSubmitted }) => {
               rules={{ required: true }}
               render={() => (
                 <AirportSelector
-                  name={FORM_FIELDS.DESTINATION}
+                  nameIdentifier={FORM_FIELDS.DESTINATION}
                   inputLabel="To"
                   onChange={setValue}
                 />

@@ -12,11 +12,17 @@ const server = setupServer(
   )
 );
 
+const props = {
+  inputLabel: "For",
+  nameIdentifier: "airport",
+  onChange: jest.fn(),
+};
+
 const renderComponent = () => {
   const queryClient = new QueryClient();
   const wrapper = (
     <QueryClientProvider client={queryClient}>
-      <AirportSelector inputLabel="For" name="airport" onChange={jest.fn()} />
+      <AirportSelector {...props} />
     </QueryClientProvider>
   );
 
@@ -62,6 +68,11 @@ test("select autocomplete suggestion", async () => {
   userEvent.click(suggestion);
 
   expect(input).toHaveValue("Václav Havel Airport Prague");
+  expect(props.onChange).toBeCalledWith("airport", {
+    code: "PRG",
+    id: "PRG",
+    name: "Václav Havel Airport Prague",
+  });
 });
 
 test("clear autocomplete suggestion", async () => {
