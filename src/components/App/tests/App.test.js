@@ -1,15 +1,25 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { QueryClientProvider, QueryClient } from "react-query";
 import mockAirportResponse from "../../../services/Airport/test/mockAirportReponse";
+import mockFlightResponse from "../../../services/Flight/tests/mockFlightResponse";
 import App from "../App";
 import FORM_FIELDS from "../../Search/constants";
 
 const server = setupServer(
   rest.get("https://api.skypicker.com/locations", (req, res, ctx) =>
     res(ctx.json(mockAirportResponse))
+  ),
+  rest.get("https://api.skypicker.com/flights", (req, res, ctx) =>
+    res(ctx.json(mockFlightResponse))
   )
 );
 
@@ -58,4 +68,12 @@ test("Search submit", async () => {
   await waitFor(() => {
     expect(screen.getByRole("progressbar")).toBeInTheDocument();
   });
+
+  await waitForElementToBeRemoved(() => screen.getByRole("progressbar"));
+
+  expect(screen.queryByText(/Find cheap flights/i)).not.toBeInTheDocument();
+  expect(screen.getAllByText(/San Francisco/i).length).toEqual(2);
+  expect(screen.getAllByText(/San Diego/i).length).toEqual(2);
+  expect(screen.getByText(/88 EUR/i)).toBeInTheDocument();
+  expect(screen.getByText(/105 EUR/i)).toBeInTheDocument();
 });
